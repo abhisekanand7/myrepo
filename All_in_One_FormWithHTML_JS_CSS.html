@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.required {
+ color: red;
+}
+
+.errorMsg {  
+   color: red;
+}
+ 
+.errorBox {  
+   border: 4px solid red;
+}
+ 
+table {
+   border: 0;
+}
+ 
+td {
+   margin: 0;
+   padding: 3px 10px;
+}
+</style>
+  <meta charset="utf-8">
+  <title>HTML Assignment</title>
+  
+</head>
+ 
+<body>
+<fieldset style="background-color: #e6ff33">
+  <legend></legend>
+  <h2>HTML Form Input Validation Using JavaScript</h2>
+  <hr>
+ 
+  <form id="formTest" method="get" action="http://www.bits-pilani.ac.in/university/wilp/wilpoverview">
+    <table>
+    <tbody><tr>
+      <td><label for="txtName">Name<span class="required">*</span></label></td>
+      <td><input id="txtName" name="name" placeholder="Enter the Name" style="width: 300px;" type="text"></td>
+      <td id="elmNameError" class="errorMsg">&nbsp;</td></tr>
+    <tr>
+      <td><label for="txtAddress">Address<span class="required">*</span></label></td>
+      <td><input id="txtAddress" name="address" placeholder="Enter the Address" style="width: 300px;" type="text"></td>
+      <td id="elmAddressError" class="errorMsg">&nbsp;</td></tr>
+	<tr>
+      <td><label for="txtZipcode">Zip Code<span class="required">*</span></label></td>
+      <td><input id="txtZipcode" name="zipcode" placeholder="Enter a 6-digit code" type="text"></td>
+      <td id="elmZipcodeError" class="errorMsg">&nbsp;</td></tr>
+    <tr>
+      <td>Country<span class="required">*</span></td>
+      <td><select id="selCountry" name="country">
+            <option value="" selected="">Select a Country</option>
+            <option value="India">India</option>
+            <option value="Nepal">Nepal</option>
+            <option value="Bhutan">Bhutan</option>
+			<option value="Banladesh">Bangladesh</option>
+			<option value="China">China</option>
+			<option value="Srilanka">Srilanka</option>
+			<option value="England">England</option>
+			<option value="America">America</option>
+			<option value="Russia">Russia</option>
+			<option value="Others">Others</option>
+          </select></td>
+      <td id="elmCountryError" class="errorMsg">&nbsp;</td></tr>
+    <tr>
+      <td>Gender<span class="required">*</span></td>
+      <td><label><input name="gender" value="m" type="radio">Male</label>
+          <label><input name="gender" value="f" type="radio">Female</label></td>
+      <td id="elmGenderError" class="errorMsg">&nbsp;</td></tr>
+    <tr>
+      <td>Preferences<span class="required">*</span></td>
+      <td><label><input name="color" value="r" checked="" type="checkbox">Red</label>
+          <label><input name="color" value="g" type="checkbox">Green</label>
+          <label><input name="color" value="b" type="checkbox">Blue</label></td>
+      <td id="elmColorError" class="errorMsg">&nbsp;</td></tr>
+    <tr>
+      <td><label for="txtPhone">Phone<span class="required">*</span></label></td>
+      <td><input id="txtPhone" name="phone" placeholder="Enter 10 digit Mobile Number" style="width: 300px;" type="text"></td>
+      <td id="elmPhoneError" class="errorMsg">&nbsp;</td></tr>
+    <tr>
+      <td><label for="txtEmail">Email<span class="required">*</span></label></td>
+      <td><input id="txtEmail" name="email" style="width: 300px;" placeholder="Enter the Email-Id" type="text"></td>
+      <td id="elmEmailError" class="errorMsg">&nbsp;</td></tr>
+    <tr>
+      <td><label for="txtPassword">Password (8 characters)<span class="required">*</span></label></td>
+      <td><input id="txtPassword" name="password" placeholder="Enter 8 Character Password" style="width: 300px;" type="password"></td>
+      <td id="elmPasswordError" class="errorMsg">&nbsp;</td></tr>
+    <tr>
+      
+      
+      <td><label for="txtPWVerified">Verify Password<span class="required">*</span></label></td>
+      <td><input id="txtPWVerified" name="pwVerified" style="width: 300px;" placeholder="Verify Password" type="password"></td>
+      <td id="elmPWVerifiedError" class="errorMsg">&nbsp;</td></tr>
+    <tr>
+      <td><label for="dateBirthday">Date Of Birth<span class="required">*</span></label></td>
+      <td>
+		<script>
+			function is_leap()
+			{
+				var year=document.getElementById('f_year').value;
+				var a = 1900;
+				for(a;a<year;a+=4)
+				{
+				}
+
+				if(a==year)
+				{
+					return true;
+				}
+				else return false;
+			}
+			function out_days(v)
+			{
+				var html = '';
+				for(var x=1;x<=v;x++)
+				{
+					html += '<option value="' + x + '">' + x + '</option>';
+				}
+				document.getElementById('f_day').innerHTML=html;                
+			}
+			function chk_mon()
+			{
+				var e = document.getElementById('f_month').selectedIndex;
+				switch(e)
+				{
+					case 0: case 2: case 4: case 6: case 7: case 9: case 11:
+					{                   
+						out_days(31);
+						break;
+					}   
+					case 1:
+					{
+						if(is_leap())
+						{
+							out_days(29);
+						}
+						else out_days(28);
+						break;
+					}
+					case 3: case 5: case 8: case 10:
+					{
+						out_days(30);
+						break;
+					}
+					default:
+					{
+						out_days(31);
+						break;
+					}
+				}
+			}
+        </script>
+        
+		YEAR: <select onchange="chk_mon()" id="f_year" name="from_year">
+	    <option value="1960">1960</option>
+		<option value="1961">1961</option>
+		<option value="1962">1962</option>
+		<option value="1963">1963</option>
+		<option value="1964">1964</option>
+		<option value="1965">1965</option>
+		<option value="1966">1966</option>
+		<option value="1967">1967</option>
+		<option value="1968">1968</option>
+		<option value="1969">1969</option>
+		<option value="1970">1970</option>
+		<option value="1971">1971</option>
+		<option value="1972">1972</option>
+		<option value="1973">1973</option>
+		<option value="1974">1974</option>
+		<option value="1975">1975</option>
+		<option value="1976">1976</option>
+		<option value="1977">1977</option>
+		<option value="1978">1978</option>
+		<option value="1979">1979</option>
+		<option value="1980">1980</option>
+		<option value="1981">1981</option>
+		<option value="1982">1982</option>
+		<option value="1983">1983</option>
+		<option value="1984">1984</option>
+		<option value="1985">1985</option>
+		<option value="1986">1986</option>
+		<option value="1987">1987</option>
+		<option value="1988">1988</option>
+		<option value="1989">1989</option>
+		<option value="1990">1990</option>
+		<option value="1991">1991</option>
+		<option value="1992">1992</option>
+		<option value="1993">1993</option>
+		<option value="1994">1994</option>
+		<option value="1995">1995</option>
+		<option value="1996">1996</option>
+		<option value="1997">1997</option>
+		<option value="1998">1998</option>
+		<option value="1999">1999</option>
+		<option value="2000">2000</option>
+		<option value="2001">2001</option>
+		<option value="2002">2002</option>
+		<option value="2003">2003</option>
+		<option value="2004">2004</option>
+		<option value="2005">2005</option>
+		<option value="2006">2006</option>
+		<option value="2007">2007</option>
+		<option value="2008">2008</option>
+		<option value="2009">2009</option>
+		<option value="2010">2010</option>
+		<option value="2011">2011</option>
+		<option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+		</select>
+		MONTH:<select onchange="chk_mon()" id="f_month" name="from_month">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+		</select>
+		DAY:<select id="f_day" name="from_day"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option>
+		</select>  
+			
+	  </td>
+    </tr>
+	<tr>
+      <td>&nbsp;</td>
+      <td><input value="SEND" id="btnSubmit" type="submit">&nbsp;
+          <input value="CLEAR" id="btnReset" type="reset"></td>
+      <td>&nbsp;</td></tr>
+    </tbody></table>
+  
+ </form></fieldset>
+ 
+<script> 
+window.onload = validate;
+function validate() {
+document.getElementById("formTest").onsubmit = validateForm;
+document.getElementById("btnReset").onclick = clearForm;
+document.getElementById("txtName").focus();
+}
+function validateForm(theForm) {
+with(theForm) {
+return (isNotEmpty(txtName, "Please enter your name!", elmNameError)
+&& isNotEmpty(txtAddress, "Please enter your Address!", elmAddressError)
+&& isNumeric(txtZipcode, "Please enter a 6-digit zip code!", elmZipcodeError)
+&& isLengthMinMax(txtZipcode, 6, 6, "Please enter a 6-digit zip code!", elmZipcodeError)
+&& isSelected(selCountry, "Select a country!", elmCountryError)
+&& isChecked("gender", "Please check a gender!", elmGenderError)
+&& isChecked("color", "Please check a color!", elmColorError)
+&& isNumeric(txtPhone,"Please enter 10 Digit Mobile number!", elmPhoneError)
+&& isPhoneLengthMinMax(txtPhone, 10, 10, "Please enter 10 Digit Mobile number!", elmPhoneError)
+&& isValidEmail(txtEmail, "Enter a valid email!", elmEmailError)
+&& isValidPassword(txtPassword, "Please Enter a Password of 8 characters!", elmPasswordError)
+&& verifyPassword(txtPassword, txtPWVerified, "Different from entered password!",
+elmPWVerifiedError)
+);
+}
+}
+ 
+function postValidate(isValid, errMsg, errElm, inputElm) {
+if (!isValid) {
+// Show errMsg on errElm, if provided.
+if (errElm !== undefined && errElm !== null
+&& errMsg !== undefined && errMsg !== null) {
+errElm.innerHTML = errMsg;
+}
+// Set focus on Input Element for correcting error, if provided.
+if (inputElm !== undefined && inputElm !== null) {
+inputElm.classList.add("errorBox"); // Add class for styling
+inputElm.focus();
+}
+} else {
+// Clear previous error message on errElm, if provided.
+if (errElm !== undefined && errElm !== null) {
+errElm.innerHTML = "";
+}
+if (inputElm !== undefined && inputElm !== null) {
+inputElm.classList.remove("errorBox");
+}
+}
+}
+ 
+function isNotEmpty(inputElm, errMsg, errElm) {
+var isValid = (inputElm.value.trim() !== "");
+postValidate(isValid, errMsg, errElm, inputElm);
+return isValid;
+}
+ 
+/* Validate that input value contains one or more digits */
+function isNumeric(inputElm, errMsg, errElm) {
+var isValid = (inputElm.value.trim().match(/^\d+$/) !== null);
+postValidate(isValid, errMsg, errElm, inputElm);
+return isValid;
+}
+ 
+/* Validate that input value contains only one or more letters */
+function isAlphabetic(inputElm, errMsg, errElm) {
+var isValid = (inputElm.value.trim().match(/^[a-zA-Z]+$/) !== null) ;
+postValidate(isValid, errMsg, errElm, inputElm);
+return isValid;
+}
+ 
+/* Validate that input value contains one or more digits or letters */
+function isAlphanumeric(inputElm, errMsg, errElm) {
+var isValid = (inputElm.value.trim().match(/^[0-9a-zA-Z]+$/) !== null);
+postValidate(isValid, errMsg, errElm, inputElm);
+return isValid;
+}
+ 
+/* Validate that input value length is between minLength and maxLength */
+function isLengthMinMax(inputElm, minLength, maxLength, errMsg, errElm) {
+var inputValue = inputElm.value.trim();
+var isValid = (inputValue.length >= minLength) && (inputValue.length <= maxLength);
+postValidate(isValid, errMsg, errElm, inputElm);
+return isValid;
+}
+ 
+function isPhoneLengthMinMax(inputElm, minLength, maxLength, errMsg, errElm) {
+var inputValue = inputElm.value.trim();
+var isValid = (inputValue.length >= minLength) && (inputValue.length <= maxLength);
+postValidate(isValid, errMsg, errElm, inputElm);
+return isValid;
+}
+ 
+// Validate that input value is a valid email address
+function isValidEmail(inputElm, errMsg, errElm) {
+var isValid = (inputElm.value.trim().match(
+/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) !== null);
+postValidate(isValid, errMsg, errElm, inputElm);
+return isValid;
+}
+ 
+function isSelected(selectElm, errMsg, errElm) {
+// You need to set the default value of <select>'s <option> to "".
+var isValid = (selectElm.value !== ""); // value in selected <option>
+postValidate(isValid, errMsg, errElm, selectElm);
+return isValid;
+}
+ 
+function isChecked(inputName, errMsg, errElm) {
+var elms = document.getElementsByName(inputName);
+var isChecked = false;
+for (var i = 0; i < elms.length; ++i) {
+if (elms[i].checked) {
+isChecked = true;
+break;
+}
+}
+postValidate(isChecked, errMsg, errElm, null); // no focus element
+return isChecked;
+}
+ 
+ 
+function isValidPassword(inputElm, errMsg, errElm) {
+var isValid = (inputElm.value.trim().match(/^\w{8}$/) !== null);
+postValidate(isValid, errMsg, errElm, inputElm);
+return isValid;
+}
+ 
+ 
+function verifyPassword(pwElm, pwVerifiedElm, errMsg, errElm) {
+var isTheSame = (pwElm.value === pwVerifiedElm.value);
+postValidate(isTheSame, errMsg, errElm, pwVerifiedElm);
+return isTheSame;
+}
+ 
+function clearForm() {
+// Remove class "errorBox" from input elements
+var elms = document.querySelectorAll('.errorBox'); // class
+for (var i = 0; i < elms.length; i++) {
+elms[i].classList.remove("errorBox");
+}
+  
+// Remove previous error messages
+elms = document.querySelectorAll('[id$="Error"]'); // id ends with Error
+for (var i = 0; i < elms.length; i++) {
+elms[i].innerHTML = "";
+}
+ 
+// Set initial focus
+document.getElementById("txtName").focus();
+}
+</script>
+
+</body>
